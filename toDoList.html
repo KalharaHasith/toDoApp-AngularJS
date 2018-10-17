@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title> Creating To Do List</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="script.js"></script>
+	<style>
+		span.done-true{
+			color: gray;
+			font-style:bold;
+			text-decoration: line-through;
+		}
+		span[contenteditable="true"]{
+			background: #D3D3D3;
+			padding: 4px;
+		}
+		button {
+    background-color:#e60000;
+    border: none;
+    color: white;
+    padding: 9px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    padding right: 20px;
+}
+	</style>
+</head>
+<body ng-app="mainApp" ng-controller="app">
+    <h1 style="text-align: center;">Add a task</h1>
+    <input  ng-model="task" ng-keyup="searchEnter()" type="text" name="" style="display: block;margin:0 auto;padding: 5px;font-size: 15px;width: 300px;">
+  <button ng-click="clearCompleted()"> Clear Completed</button>
+    <div id="tasksToShow"></div>
+         <ul>
+         	<li ng-repeat="oneTask in tasks">
+         		<input type="checkbox" ng-model="oneTask.status">
+         		<span contenteditable="false" ng-dblclick="contentEdit()"ng-keyup="enterAgain(oneTask.taskMsg)"  ng-model="oneTask.taskMsg" class="done-{{oneTask.status}}">
+         		{{oneTask.taskMsg}}</span>
+         	</li>
+         </ul>
+    	<!--<ul>
+		<li ng-repeat="todo in todos">
+			<input type="checkbox" ng-model="todo.done">
+			<span ng-class="{'done':todo.done}">{{todo.title}}</span>
+		</li>
+
+	</ul>-->
+</body>
+</html>
